@@ -10,8 +10,30 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Home Page, {{ name }}</h1>
-        <h2>This is the full home page</h2>
+        <form class="m-3" action="">
+            <div >
+              <label for="searchMovie" class="form-label fs-2">Search for Movie</label>
+              <input type="text" class="form-control" name="searchMovie" aria-describedby="emailHelp">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Search</button>
+        </form>
+    </div>
+    {% if searchTerm != None and searchTerm != '' %}
+    <div class="container">
+        <legend>Searching for: {{searchTerm}}</legend>
+    </div>
+    {% endif %}
+    
+    <div class="container d-flex flex-nowrap">
+        {% for movie in movies %}
+        <div class="card m-2" style="width: 18rem;">
+            <img src="{{movie.url}}" class="card-img-top" alt="..." style="width: 18rem;height: 200px;">
+            <div class="card-body">
+              <h5 class="card-title">{{movie.title}}</h5>
+              <p class="card-text">{{movie.description}}</p>
+            </div>
+        </div>
+    {% endfor %}
     </div>
     
     <!-- JavaScript Bundle with Popper -->
